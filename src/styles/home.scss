@@ -1,0 +1,33 @@
+.logo-container{
+    position: absolute;
+    background-color: rgb(0, 0, 0, 0.4);
+    height: 5rem;
+    width: 100%;
+    .logo-image{
+        position: absolute;
+        margin: 1rem;
+        height: 3rem;
+    }   
+    
+}
+
+
+.login-form{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 20rem;
+    left: 30rem;
+    gap: 1rem;
+    background:rgb(0, 0, 0, 0.7);
+    padding: 2rem;
+    label{
+    color: white;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+    }
+    input{
+        margin-bottom: 1rem;
+    }
+
+}
