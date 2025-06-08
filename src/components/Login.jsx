@@ -54,7 +54,7 @@ const Login = () => {
             </>
           )}
 
-          <button>{isLogin ? 'Sign in' : 'Sign up'}</button>
+          <button className='login-btn'>{isLogin ? 'Sign in' : 'Sign up'}</button>
         </form>
 
         {isLogin ? (
@@ -63,8 +63,8 @@ const Login = () => {
             <b onClick={() => setIsLogin(false)}>Sign up now.</b>
           </span>
         ) : (
-          <span>
-            Existing User?
+          <span className='signup-redirect'>
+            Existing User? {' '}
             <b onClick={() => setIsLogin(true)}>Sign in now.</b>{' '}
           </span>
         )}
