@@ -1,6 +1,6 @@
 import Header from './Header';
 const Body = () => {
-  return <Header />;
+  return  <Header />;
 };
 
 export default Body;

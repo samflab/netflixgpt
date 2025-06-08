@@ -5,18 +5,12 @@ import { useState } from 'react';
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   return (
-    <>
+    <div className="login-bg">
       <Header />
-      <img
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/69bec183-9cc8-49d4-8fc2-08228d3c91b4/web/IN-en-20250414-TRIFECTA-perspective_c8273fb1-8860-4ff5-bd1c-c2c4b44d5f2a_large.jpg"
-        className="w-full h-full object-cover"
-        alt="background"
-      />
-
-      <div className="absolute login-form">
-        <h2>{isLogin ? 'Sign In' : 'Sign Up'}</h2>
+      <div className="login-form flex flex-col">
+        <h2 className="form-heading">{isLogin ? 'Sign In' : 'Sign Up'}</h2>
         <form className="flex justify-center align-center">
-          {isLogin ? (
+          {isLogin ? null : (
             <>
               <div>
                 <label htmlFor="name">Name</label>
@@ -25,7 +19,7 @@ const Login = () => {
                 <input type="text" id="name" required placeholder="Name" />
               </div>{' '}
             </>
-          ) : null}
+          )}
           <div>
             <label htmlFor="email">Email</label>
           </div>
@@ -44,7 +38,7 @@ const Login = () => {
               />
             </div>
           </div>
-          {isLogin ? (
+          {isLogin ? null : (
             <>
               <div>
                 <label htmlFor="confirm-password">Confirm Password</label>
@@ -58,22 +52,24 @@ const Login = () => {
                 />
               </div>
             </>
-          ) : null}
+          )}
 
           <button>{isLogin ? 'Sign in' : 'Sign up'}</button>
         </form>
 
         {isLogin ? (
-          <span>
-            New to Netflix? <b onClick={setIsLogin(false)}>Sign up now.</b>
+          <span className='signup-redirect'>
+            New to Netflix?{' '}
+            <b onClick={() => setIsLogin(false)}>Sign up now.</b>
           </span>
         ) : (
           <span>
-            Existing User?<b onClick={setIsLogin(true)}>Sign in now.</b>{' '}
+            Existing User?
+            <b onClick={() => setIsLogin(true)}>Sign in now.</b>{' '}
           </span>
         )}
       </div>
-    </>
+    </div>
   );
 };
 
