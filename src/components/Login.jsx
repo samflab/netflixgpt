@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -15,6 +16,7 @@ const Login = () => {
   const passwordRef = useRef(null);
   const nameRef = useRef(null);
   const confirmPasswordRef = useRef(null);
+  const navigate = useNavigate();
 
   const submitHandler = () => {
     let message = null;
@@ -29,7 +31,9 @@ const Login = () => {
     } else {
       message = formValidation(
         emailRef.current.value,
-        passwordRef.current.value, undefined, undefined,
+        passwordRef.current.value,
+        undefined,
+        undefined,
         isLogin
       );
     }
@@ -48,27 +52,31 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          // ...
-
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          // ..
           setErrorMessage(`${errorCode} - ${errorMessage}`);
         });
+      navigate('/browse');
     } else {
-      signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
+      signInWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef.current.value
+      )
         .then((userCredential) => {
           const user = userCredential.user;
           // ...
-          console.log("user", user)
+          console.log('user', user);
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(`${errorCode} - ${errorMessage}`);
         });
+
+      navigate('/browse');
     }
   };
   return (
