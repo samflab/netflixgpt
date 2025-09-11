@@ -1,18 +1,17 @@
-import '../styles/home.scss';
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import '../styles/home.scss';
 import { useEffect } from 'react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { addUser, removeUser } from '../utils/userSlice';
+import { LOGO } from '../utils/constants';
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(
@@ -29,6 +28,7 @@ const Header = () => {
         navigate('/');
       }
     });
+    return () => unsubscribe();
   }, []);
 
   const signoutHandler = () => {
@@ -41,28 +41,30 @@ const Header = () => {
       });
   };
   return (
-    <div className={`logo-container ${user ? '' : 'bg-overlay'}`}>
-      {user ? (
-        <div>
-          {' '}
-          <img
-            src="https://images.ctfassets.net/y2ske730sjqp/821Wg4N9hJD8vs5FBcCGg/9eaf66123397cc61be14e40174123c40/Vector__3_.svg?w=460"
-            alt="logo"
-            className="h-10 w-10 logo-image"
-          />
-        </div>
-      ) : (
+    <div
+      className={`logo-container flex flex-row justify-between overflow-hidden 
+              ${user ? '' : 'absolute inset-0 bg-black/40 h-full w-full'}`}
+    >
+      <div>
         <img
-          src="https://images.ctfassets.net/y2ske730sjqp/821Wg4N9hJD8vs5FBcCGg/9eaf66123397cc61be14e40174123c40/Vector__3_.svg?w=460"
+          src={LOGO}
           alt="logo"
-          className="h-10 w-10 logo-image"
+          className={`h-12 w-auto m-4 ${user ? '' : 'absolute'}`}
         />
-      )}
+      </div>
 
       {user ? (
-        <div className="user-photo">
-          <img src={user.photoURL} />
-          <button onClick={signoutHandler}>Sign out</button>
+        <div className="flex items-center gap-4 pr-4">
+          <img
+            src={user.photoURL}
+            className="h-12 w-12 object-cover rounded-full"
+          />
+          <button
+            onClick={signoutHandler}
+            className="border-none bg-transparent underline text-base cursor-pointer"
+          >
+            Sign out
+          </button>
         </div>
       ) : null}
     </div>
