@@ -2,7 +2,7 @@ import { FaPlay } from 'react-icons/fa';
 import { IoIosInformationCircleOutline } from 'react-icons/io';
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="w-[99.2vw] aspect-video pt-[10%] px-8 absolute text-white bg-gradient-to-r from-black" >
+    <div className="w-[99.2vw] aspect-video pt-[10%] px-8 absolute text-white bg-gradient-to-r from-black">
       <h1 className="text-4xl font-bold w-1/4">{title}</h1>
       <p className="py-6 text-lg w-1/4">{overview}</p>
       <div className="flex">
