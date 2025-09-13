@@ -43,13 +43,13 @@ const Header = () => {
   return (
     <div
       className={`logo-container flex flex-row justify-between overflow-hidden 
-              ${user ? '' : 'absolute inset-0 bg-black/40 h-full w-full'}`}
+              ${user ? 'bg-black' : 'absolute inset-0 bg-black/40 h-full w-full'}`}
     >
       <div>
         <img
           src={LOGO}
           alt="logo"
-          className={`h-12 w-auto m-4 ${user ? '' : 'absolute'}`}
+          className={`h-12 w-auto m-4 px-4${user ? '' : 'absolute'}`}
         />
       </div>
 
@@ -61,7 +61,7 @@ const Header = () => {
           />
           <button
             onClick={signoutHandler}
-            className="border-none bg-transparent underline text-base cursor-pointer"
+            className="border-none bg-transparent underline text-base cursor-pointer text-white pr-4"
           >
             Sign out
           </button>

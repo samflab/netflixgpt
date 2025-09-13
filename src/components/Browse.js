@@ -1,11 +1,13 @@
 import Header from './Header';
 import useNowPlayingMovies from '../hooks/useNowPlayingMovies';
+import HeroSection from './HeroSection';
 
 const Browse = () => {
-  useNowPlayingMovies()
+  useNowPlayingMovies();
   return (
     <div>
       <Header />
+      <HeroSection />
     </div>
   );
 };
